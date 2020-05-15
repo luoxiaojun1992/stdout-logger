@@ -4,6 +4,14 @@
 
 A stdout log servo instead of Linux output redirection
 
+## Limitations
+
++ Echoing {servoed_exit_identify} is the only way to exit in servoed script
++ Servoed script cannot do anything after echo {servoed_exit_identify}
++ Servoed script cannot exit via some functions as exit or die
++ Servoed script cannot exit if an exception occurred
++ Servoed script cannot exit if an error (includes fatal error) occurred
+
 ## Usage
 
 ```
