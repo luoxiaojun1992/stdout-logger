@@ -1,5 +1,9 @@
 # Stdout Logger
 
+## Description
+
+A stdout log servo instead of Linux output redirection
+
 ## Usage
 
 ```
