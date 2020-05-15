@@ -10,13 +10,32 @@ $logBufferSize = 0;
 
 $logCounter = 0;
 
+$receiveTimes = 0;
+
 while(true) {
+    ++$receiveTimes;
+    if ($receiveTimes >= 100000000) {
+        if ($logBufferSize > 0) {
+            file_put_contents($logPath, implode('', $logBuffer), LOCK_EX | FILE_APPEND);
+            $logBuffer = [];
+            $logBufferSize = 0;
+            echo 'Log buffer flushed', PHP_EOL;
+        }
+    }
+
     $log = fgets(STDIN);
     if ($log === false) {
         continue;
     }
 
     if ($log === '###exit###') {
+        if ($logBufferSize > 0) {
+            file_put_contents($logPath, implode('', $logBuffer), LOCK_EX | FILE_APPEND);
+            $logBuffer = [];
+            $logBufferSize = 0;
+            echo 'Log buffer flushed', PHP_EOL;
+        }
+
         exit(0);
     }
 
