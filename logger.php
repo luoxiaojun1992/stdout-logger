@@ -2,9 +2,8 @@
 
 declare(ticks=1);
 
-$servoed = $argv[1];;
-$logPath = $argv[2];
-$logBufferFlushInterval = $argv[3] ?? 10000;
+$logPath = $argv[1];
+$logBufferFlushInterval = $argv[2] ?? 10000;
 
 $logBuffer = [];
 $logBufferSize = 0;
@@ -14,17 +13,11 @@ $logCounter = 0;
 while(true) {
     $log = fgets(STDIN);
     if ($log === false) {
-        var_dump('ps aux | grep "' . $servoed . '" | grep -v grep | wc -l');
-        $psCheckResult = shell_exec('ps aux | grep "' . $servoed . '" | grep -v grep | wc -l');
-        $psCheckResult = str_replace(' ', '', $psCheckResult);
-        $psCheckResult = str_replace("\r", '', $psCheckResult);
-        $psCheckResult = str_replace("\n", '', $psCheckResult);
-        var_dump($psCheckResult);
-        if ($psCheckResult === '0') {
-            exit(0);
-        } else {
-            continue;
-        }
+        continue;
+    }
+
+    if ($log === '###exit###') {
+        exit(0);
     }
 
     shell_exec('clear');
