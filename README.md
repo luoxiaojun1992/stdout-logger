@@ -2,7 +2,7 @@
 
 ## Description
 
-A stdout log servo instead of Linux output redirection
+A stdout log servo instead of Linux output redirection which is suitable for resident memory program.
 
 ## Limitations
 
