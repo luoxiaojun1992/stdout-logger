@@ -1,8 +1,10 @@
 <?php
 
+$logCount = intval($argv[1] ?? 10000000);
+
 $begin = microtime(true);
 
-for ($i = 0; $i < 10000000; ++$i) {
+for ($i = 0; $i < $logCount; ++$i) {
     echo 11111111, PHP_EOL;
 }
 
