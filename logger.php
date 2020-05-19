@@ -25,7 +25,7 @@ while(true) {
         continue;
     }
 
-    $logWithoutEOL = rtrim($log, "\r\n");
+    $logWithoutEOL = trim(rtrim($log, "\r\n"));
     if ($logWithoutEOL === $servoedExitIdentify) {
         if ($logBufferSize > 0) {
             file_put_contents($logPath, implode('', $logBuffer), LOCK_EX | FILE_APPEND);
